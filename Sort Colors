@@ -1,0 +1,42 @@
+import java.util.*;
+public class SortColors {
+    static void swap(int arr[], int i, int j)
+    {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of elements: ");
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter elements in an array: ");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int low = 0, mid = 0, high = n-1;
+        while(mid <= high)
+        {
+            switch (arr[mid]) {
+                case 0: swap(arr, low, mid);
+                        low++;
+                        mid++;
+                    
+                    break;
+
+                case 1: mid++;
+                    break;
+
+                case 2: swap(arr, mid, high);
+                        high--;
+
+                    break;
+            }
+        }
+        for (int element : arr) {
+            System.out.print(element + " ");
+        }
+        sc.close();
+    }    
+}
