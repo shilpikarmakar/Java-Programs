@@ -1,0 +1,41 @@
+import java.util.*;
+public class ValidParenthesis {
+    public static boolean isValid(String str)
+    {
+        HashMap<Character, Character> map = new HashMap<>();
+        map.put(')','(');
+        map.put('}', '{');
+        map.put(']', '[');
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char singleChar = str.charAt(i);
+            if(map.containsKey(singleChar))
+            {
+                if(stack.isEmpty())
+                {
+                    return false;
+                }
+                else
+                {
+                    char topValue = stack.pop();
+                    if(topValue != map.get(singleChar))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                stack.push(singleChar);
+            }
+        }
+        return stack.isEmpty();
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the string: ");
+        String str = sc.next();
+        System.out.println(isValid(str));
+        sc.close();
+    }
+}
